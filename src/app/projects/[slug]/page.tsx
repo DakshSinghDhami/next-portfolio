@@ -1,20 +1,22 @@
-import { PROJECTS } from "@/lib/data";
+import { PROJECTS, NEW_PROJECTS } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+
+const ALL_PROJECTS = [...PROJECTS, ...NEW_PROJECTS];
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return PROJECTS.map((project) => ({
+  return ALL_PROJECTS.map((project) => ({
     slug: project.slug,
   }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = PROJECTS.find((p) => p.slug === slug);
+  const project = ALL_PROJECTS.find((p) => p.slug === slug);
   if (!project) return { title: "Project Not Found" };
 
   return {
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = PROJECTS.find((p) => p.slug === slug);
+  const project = ALL_PROJECTS.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
@@ -84,29 +86,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Features */}
-        <div className="mb-10">
-          <h2 className="text-xl font-semibold text-white mb-4">Features</h2>
-          <ul className="space-y-3">
-            {project.features.map((feature) => (
-              <li key={feature} className="flex items-start gap-3 text-base-400">
-                <svg
-                  className="h-5 w-5 text-accent-cyan mt-0.5 shrink-0"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {project.features.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-xl font-semibold text-white mb-4">Features</h2>
+            <ul className="space-y-3">
+              {project.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-3 text-base-400">
+                  <svg
+                    className="h-5 w-5 text-accent-cyan mt-0.5 shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4">
