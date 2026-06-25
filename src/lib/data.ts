@@ -11,6 +11,27 @@ export interface Project {
   features: string[];
 }
 
+export interface OSSProject {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  stars: number;
+}
+
+export const OSS_PROJECTS: OSSProject[] = [
+  { id: 1, title: '@lucii/hooks', description: '22 production-ready React hooks — localStorage, debounce, media query, fetch, and more. Fully typed, tree-shakeable, zero dependencies.', tags: ['React', 'TypeScript', 'Hooks'], github: 'https://github.com/DakshSinghDhami/hooks', stars: 0 },
+  { id: 2, title: 'type-fns', description: '36 TypeScript utility types — DeepPartial, DeepPick, PathValues, CamelCase, IsNever, and more. For strict type safety.', tags: ['TypeScript', 'Types', 'Utilities'], github: 'https://github.com/DakshSinghDhami/type-fns', stars: 0 },
+  { id: 3, title: 'css-breeze', description: 'Minimal CSS framework (~5KB). 12-column grid, dark palette, utilities, components. Like Tailwind but tiny.', tags: ['CSS', 'Framework', 'Dark Theme'], github: 'https://github.com/DakshSinghDhami/css-breeze', stars: 0 },
+  { id: 4, title: 'pico-fetch', description: 'Tiny fetch wrapper (~1KB gzip). Interceptors, retry with backoff, timeout, cancellation. TypeScript generics.', tags: ['HTTP', 'TypeScript', 'Lightweight'], github: 'https://github.com/DakshSinghDhami/pico-fetch', stars: 0 },
+  { id: 5, title: 'color-to', description: 'Color manipulation library (~1KB). Parse, convert, lighten, darken, contrast ratios. Hex/RGB/HSL/HSV/HWB/CMYK.', tags: ['Color', 'Utility', 'TypeScript'], github: 'https://github.com/DakshSinghDhami/color-to', stars: 0 },
+  { id: 6, title: 'react-form-zen', description: 'Lightweight form validation with Zod integration. Nested fields, dirty/touched states, custom validators.', tags: ['React', 'Forms', 'Zod'], github: 'https://github.com/DakshSinghDhami/react-form-zen', stars: 0 },
+  { id: 7, title: 'clsx-extra', description: 'Enhanced clsx with variant resolution. `cx("btn", { variant: "primary" })` → "btn btn-primary". Tailwind-friendly.', tags: ['CSS', 'Utility', 'TypeScript'], github: 'https://github.com/DakshSinghDhami/clsx-extra', stars: 0 },
+  { id: 8, title: 'serve-dir', description: 'HTTP directory server CLI. One command: `npx serve-dir .` Auto-open, HTTPS, live reload, directory listing UI.', tags: ['CLI', 'Node.js', 'Server'], github: 'https://github.com/DakshSinghDhami/serve-dir', stars: 0 },
+  { id: 9, title: 'react-scroll-anim', description: 'Scroll-triggered animation library (<2KB). useReveal, Reveal component, useParallax, useCountUp. IntersectionObserver-based.', tags: ['React', 'Animation', 'Scroll'], github: 'https://github.com/DakshSinghDhami/react-scroll-anim', stars: 0 },
+];
+
 export const PROJECTS: Project[] = [
   {
     id: 1,
