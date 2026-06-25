@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-base-950: #0a0a0b;
+  --color-base-900: #121213;
+  --color-base-800: #1a1a1e;
+  --color-base-700: #27272a;
+  --color-base-600: #3f3f46;
+  --color-base-400: #a1a1aa;
+  --color-base-300: #d4d4d8;
+  --color-base-100: #f4f4f5;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-violet-dark: #7c3aed;
+  --color-accent-cyan: #22d3ee;
+  --color-accent-cyan-dark: #0891b2;
+  --color-accent-glow: rgba(139, 92, 246, 0.15);
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-base-700) transparent;
+}
+
+body {
+  background-color: var(--color-base-950);
+  color: var(--color-base-300);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: rgba(139, 92, 246, 0.3);
+  color: white;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
