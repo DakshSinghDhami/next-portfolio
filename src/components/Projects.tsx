@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ALL_PROJECTS } from "@/lib/data";
+import Section3D from "@/components/Section3D";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -17,6 +18,7 @@ export default function Projects() {
       aria-label="Selected projects"
       className="relative py-32 sm:py-40"
     >
+      <Section3D variant="both" />
       <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-12 lg:pl-[18rem] xl:pl-[22rem]">
         {/* Section heading */}
         <motion.div

@@ -18,20 +18,20 @@ function Galaxy({ mouse }: { mouse: React.MutableRefObject<{ x: number; y: numbe
 
   // Device detection — once, at mount
   const { count, radius } = useMemo(() => {
-    if (typeof window === "undefined") return { count: 6000, radius: 8 };
+    if (typeof window === "undefined") return { count: 10000, radius: 8.5 };
     const lowMem = (navigator as any).deviceMemory != null &&
       (navigator as any).deviceMemory < 4;
     const lowCores = navigator.hardwareConcurrency != null &&
       navigator.hardwareConcurrency < 4;
     const smallScreen = window.innerWidth < 768;
     if (lowMem || lowCores || smallScreen) {
-      return { count: 3000, radius: 7 };
+      return { count: 5000, radius: 7.5 };
     }
     // Detect coarse pointer as a "low-end" proxy on mobile
     if (window.matchMedia("(pointer: coarse)").matches) {
-      return { count: 3500, radius: 7 };
+      return { count: 5000, radius: 7.5 };
     }
-    return { count: 10000, radius: 9 };
+    return { count: 15000, radius: 9.5 };
   }, []);
 
   const { positions, colors, sizes } = useMemo(() => {
@@ -39,10 +39,14 @@ function Galaxy({ mouse }: { mouse: React.MutableRefObject<{ x: number; y: numbe
     const col = new Float32Array(count * 3);
     const siz = new Float32Array(count);
 
-    // Restrained palette: soft white core, faint warm dust
+    // Expanded palette: bright white core, warm cream mid,
+    // amber/blue accents for outer dust
     const core = new THREE.Color("#ffffff");
-    const mid = new THREE.Color("#b8b0a8"); // warm grey
+    const midWarm = new THREE.Color("#d4c4b0"); // warm cream
+    const midCool = new THREE.Color("#a8b4c0"); // cool steel
     const edge = new THREE.Color("#3a3530"); // dim warm
+    const amber = new THREE.Color("#c4a882"); // signature accent
+    const dustyBlue = new THREE.Color("#5a6a7a");
 
     const arms = 5;
     const armWidth = 0.45;
@@ -81,12 +85,33 @@ function Galaxy({ mouse }: { mouse: React.MutableRefObject<{ x: number; y: numbe
       pos[i3 + 1] = py;
       pos[i3 + 2] = pz;
 
-      // Color gradient by radius
+      // Color gradient by radius, with more variation
       const t = r / radius;
       const c = (() => {
-        if (t < 0.18) return core.clone().lerp(mid, t / 0.18);
-        if (t < 0.55) return mid.clone().lerp(edge, (t - 0.18) / 0.37);
-        // Some random color variance for the outer dust
+        if (t < 0.18) {
+          // Core: pure white blending toward warm cream
+          return core.clone().lerp(midWarm, t / 0.18);
+        }
+        if (t < 0.4) {
+          // Inner dust: warm cream blending toward cool steel
+          return midWarm.clone().lerp(midCool, (t - 0.18) / 0.22);
+        }
+        if (t < 0.7) {
+          // Mid: cool steel blending toward dim warm
+          return midCool.clone().lerp(edge, (t - 0.4) / 0.3);
+        }
+        // Outer: mix in amber and dusty blue for variety
+        const dustRoll = Math.random();
+        if (dustRoll < 0.35) {
+          return amber
+            .clone()
+            .multiplyScalar(0.4 + Math.random() * 0.7);
+        }
+        if (dustRoll < 0.6) {
+          return dustyBlue
+            .clone()
+            .multiplyScalar(0.4 + Math.random() * 0.6);
+        }
         return edge
           .clone()
           .multiplyScalar(0.7 + Math.random() * 0.6);
@@ -155,24 +180,24 @@ function Galaxy({ mouse }: { mouse: React.MutableRefObject<{ x: number; y: numbe
   useFrame((state, delta) => {
     if (!points.current) return;
     // Slow auto-rotation
-    points.current.rotation.y += delta * 0.03;
-    // Mouse parallax on rotation
-    const targetX = mouse.current.y * 0.08 + 0.1;
-    const targetZ = mouse.current.x * 0.05;
+    points.current.rotation.y += delta * 0.035;
+    // Mouse parallax on rotation (more dramatic)
+    const targetX = mouse.current.y * 0.18 + 0.1;
+    const targetZ = mouse.current.x * 0.12;
     points.current.rotation.x = THREE.MathUtils.lerp(
       points.current.rotation.x,
       targetX,
-      0.02
+      0.025
     );
     points.current.rotation.z = THREE.MathUtils.lerp(
       points.current.rotation.z,
       targetZ,
-      0.02
+      0.025
     );
-    // Camera parallax
+    // Camera parallax (more dramatic)
     const cam = state.camera as THREE.PerspectiveCamera;
-    cam.position.x += (mouse.current.x * 0.4 - cam.position.x) * 0.015;
-    cam.position.y += (-mouse.current.y * 0.3 - cam.position.y) * 0.015;
+    cam.position.x += (mouse.current.x * 0.9 - cam.position.x) * 0.02;
+    cam.position.y += (-mouse.current.y * 0.6 - cam.position.y) * 0.02;
     cam.lookAt(0, 0, 0);
     // Update shader time
     (material.uniforms.uTime.value as number) += delta;

@@ -56,7 +56,7 @@ export default function Contact() {
           className="mt-16 sm:mt-20"
         >
           <a
-            href="mailto:hi@lucii.io"
+            href="mailto:hi@lucii.xyz"
             className="group inline-block max-w-full"
           >
             <span
@@ -67,7 +67,7 @@ export default function Contact() {
                 letterSpacing: "-0.04em",
               }}
             >
-              hi@lucii.io
+              hi@lucii.xyz
               <span
                 className="inline-block ml-3 align-middle text-text-faint group-hover:text-text-dim group-hover:translate-x-2 transition-all duration-500"
                 aria-hidden="true"

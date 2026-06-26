@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/_next/"],
     },
-    sitemap: "https://lucii.io/sitemap.xml",
+    sitemap: "https://lucii.xyz/sitemap.xml",
   };
 }

@@ -36,7 +36,7 @@ export async function generateMetadata({
       title: `${project.title} | Daksh Singh Dhami`,
       description: project.description,
       type: "article",
-      url: `https://lucii.io/projects/${slug}`,
+      url: `https://lucii.xyz/projects/${slug}`,
       siteName: "Daksh Singh Dhami",
     },
     twitter: {
@@ -45,7 +45,7 @@ export async function generateMetadata({
       description: project.description,
     },
     alternates: {
-      canonical: `https://lucii.io/projects/${slug}`,
+      canonical: `https://lucii.xyz/projects/${slug}`,
     },
     keywords: [...project.tags, "portfolio", "daksh", categoryLabel.toLowerCase()],
   };
@@ -221,7 +221,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               author: {
                 "@type": "Person",
                 name: "Daksh Singh Dhami",
-                url: "https://lucii.io",
+                url: "https://lucii.xyz",
               },
             }),
           }}

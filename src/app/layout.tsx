@@ -34,15 +34,15 @@ export const metadata: Metadata = {
     "open source",
     "typescript",
   ],
-  authors: [{ name: "Daksh Singh Dhami", url: "https://lucii.io" }],
+  authors: [{ name: "Daksh Singh Dhami", url: "https://lucii.xyz" }],
   creator: "Daksh Singh Dhami",
-  metadataBase: new URL("https://lucii.io"),
+  metadataBase: new URL("https://lucii.xyz"),
   openGraph: {
     title: "Daksh Singh Dhami — Full-Stack Engineer",
     description:
       "Building interactive 3D experiences, creative tools, and open-source libraries for the modern web.",
     type: "website",
-    url: "https://lucii.io",
+    url: "https://lucii.xyz",
     siteName: "Daksh Singh Dhami",
     locale: "en_US",
   },
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://lucii.io",
+    canonical: "https://lucii.xyz",
   },
 };
 

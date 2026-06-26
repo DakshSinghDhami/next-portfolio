@@ -7,6 +7,7 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import OpenSource from "@/components/OpenSource";
 import Contact from "@/components/Contact";
+import Background3DClient from "@/components/Background3DClient";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <CustomCursor />
       <Sidebar />
       <MobileNav />
+      <Background3DClient />
       <main className="relative bg-base text-text">
         <Hero />
         <About />

@@ -110,10 +110,10 @@ export default function Sidebar() {
         </ul>
 
         <a
-          href="mailto:hi@lucii.io"
+          href="mailto:hi@lucii.xyz"
           className="block text-[12px] font-mono tracking-wider text-text-muted hover:text-text-dim transition-colors break-all"
         >
-          hi@lucii.io
+          hi@lucii.xyz
         </a>
 
         <p className="text-[11px] font-mono tracking-wider text-text-faint">
