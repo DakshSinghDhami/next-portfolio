@@ -1,19 +1,27 @@
-import HeroSection from "@/components/HeroSection";
-import ArcadeGrid from "@/components/ArcadeGrid";
-import ToolsGrid from "@/components/ToolsGrid";
-import OpenSourceGrid from "@/components/OpenSourceGrid";
-import { ALL_PROJECTS, OSS_PROJECTS } from "@/lib/data";
+import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
+import CustomCursor from "@/components/CustomCursor";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import OpenSource from "@/components/OpenSource";
+import Contact from "@/components/Contact";
 
 export default function Home() {
-  const arcadeProjects = ALL_PROJECTS.filter((p) => p.category === "arcade");
-  const toolsProjects = ALL_PROJECTS.filter((p) => p.category === "tools");
-
   return (
     <>
-      <HeroSection />
-      <ArcadeGrid projects={arcadeProjects} />
-      <ToolsGrid projects={toolsProjects} />
-      <OpenSourceGrid projects={OSS_PROJECTS} />
+      <CustomCursor />
+      <Sidebar />
+      <MobileNav />
+      <main className="relative bg-base text-text">
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <OpenSource />
+        <Contact />
+      </main>
     </>
   );
 }

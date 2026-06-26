@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -18,48 +17,40 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Lucii Portfolio",
-    default: "Lucii | Full-Stack Product Engineer",
+    template: "%s | Daksh Singh Dhami",
+    default: "Daksh Singh Dhami — Full-Stack Engineer",
   },
   description:
-    "16-year-old full-stack product engineer building digital realities with modern web technologies. Explore interactive 3D projects, games, creative tools, and open-source libraries.",
+    "16-year-old full-stack engineer building interactive 3D experiences, creative tools, and open-source libraries for the modern web.",
   keywords: [
     "portfolio",
     "full-stack",
     "react",
+    "next.js",
     "three.js",
-    "web developer",
+    "webgl",
     "3D",
     "interactive",
-    "games",
-    "creative tools",
     "open source",
+    "typescript",
   ],
-  authors: [{ name: "Lucii", url: "https://lucii.io" }],
+  authors: [{ name: "Daksh Singh Dhami", url: "https://lucii.io" }],
   creator: "Daksh Singh Dhami",
   metadataBase: new URL("https://lucii.io"),
   openGraph: {
-    title: "Lucii | Full-Stack Product Engineer",
+    title: "Daksh Singh Dhami — Full-Stack Engineer",
     description:
-      "Building digital realities with modern web technologies — explore interactive 3D projects, games, and tools.",
+      "Building interactive 3D experiences, creative tools, and open-source libraries for the modern web.",
     type: "website",
     url: "https://lucii.io",
-    siteName: "Lucii Portfolio",
+    siteName: "Daksh Singh Dhami",
     locale: "en_US",
-    images: [
-      {
-        url: "https://lucii.io/api/og?title=Lucii%20Portfolio&type=portfolio",
-        width: 1200,
-        height: 630,
-        alt: "Lucii Portfolio — Full-Stack Product Engineer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lucii | Full-Stack Product Engineer",
+    title: "Daksh Singh Dhami — Full-Stack Engineer",
     description:
-      "Building digital realities with modern web technologies.",
+      "Building interactive 3D experiences and tools for the modern web.",
     creator: "@dakshsdhami",
   },
   robots: {
@@ -86,11 +77,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-base-950 text-base-300">
-        <Nav />
-        <main className="flex-1">{children}</main>
+      <body className="bg-base text-text">
+        {children}
         <Footer />
       </body>
     </html>

@@ -1,511 +1,525 @@
-export interface ProjectGuide {
-  detailedDescription: string;
-  howToUse: string[];
-  enrichedFeatures: string[];
-  accent: string;
-  accentFrom: string;
-  accentTo: string;
-  emoji: string;
-}
+import type { Project } from "./data";
 
-export const PROJECT_GUIDES: Record<string, ProjectGuide> = {
-  // ═══════════════════════════════════════════
-  // ARCAE GAMES
-  // ═══════════════════════════════════════════
-  'reaction-time': {
-    detailedDescription: 'Reaction Time is a reflex-testing game that measures how quickly you respond to visual stimuli. The screen changes color at random intervals, and your job is to click — or tap — as fast as humanly possible. Each round challenges you to beat your personal best, with millisecond-precision tracking that separates instinct from hesitation.',
-    howToUse: [
-      'Click the "Start Test" button to begin a round.',
-      'Wait for the screen to change color — it happens at random intervals to prevent anticipation.',
-      'Click or tap the screen the instant you see the color change.',
-      'View your reaction time in milliseconds after each attempt.',
-      'Track your average and best times across multiple rounds in the history panel.',
-    ],
-    enrichedFeatures: ['Millisecond-precise reaction tracking', 'Randomized delay intervals', 'Personal best history', 'Average reaction time statistics', 'Minimal, distraction-free interface'],
-    accent: '#f43f5e',
-    accentFrom: '#f43f5e',
-    accentTo: '#e11d48',
-    emoji: '⚡',
-  },
-  'typing-arena': {
-    detailedDescription: 'Typing Arena drops words from the top of the screen like rain — type them correctly before they reach the bottom or you lose a life. It combines typing speed training with arcade-style urgency, pushing your WPM and accuracy under pressure. With multiple difficulty tiers and a combo scoring system, every session is a high-stakes race against gravity.',
-    howToUse: [
-      'Press "Start" to begin the word onslaught.',
-      'Words begin falling from the top of the screen.',
-      'Type each word correctly and press Space or Enter to submit.',
-      'Earn points for each correct word; build combos for multiplier bonuses.',
-      'If a word hits the bottom, you lose a life — survive as long as you can!',
-    ],
-    enrichedFeatures: ['Falling word mechanics with gravity physics', 'Real-time WPM and accuracy tracking', 'Combo multiplier scoring system', 'Multiple difficulty levels (Easy, Medium, Hard)', 'Word bank sourced from common English vocabulary'],
-    accent: '#f59e0b',
-    accentFrom: '#f59e0b',
-    accentTo: '#d97706',
-    emoji: '⌨️',
-  },
-  'color-memory': {
-    detailedDescription: 'Color Memory is a twist on the classic memory card game — instead of symbols or pictures, you match subtle gradients and hues. Cards flip to reveal a color, and you must find its identical pair. It sounds easy until similar shades start blending together, making this a true test of visual discrimination and short-term recall.',
-    howToUse: [
-      'Tap or click any card to flip it and reveal its color.',
-      'Tap a second card to find its matching pair.',
-      'If the colors match, both cards stay face-up.',
-      'If they don\'t match, both cards flip back after a brief preview.',
-      'Complete the board in the fewest moves possible to earn a top score.',
-    ],
-    enrichedFeatures: ['Rich color palette with subtle variations', 'Move counter and timer', 'Progressive difficulty with larger grids', 'Visual feedback on matches and misses', 'Score tracking across sessions'],
-    accent: '#8b5cf6',
-    accentFrom: '#8b5cf6',
-    accentTo: '#7c3aed',
-    emoji: '🎨',
-  },
-  'dots-boxes': {
-    detailedDescription: 'Dots & Boxes brings the classic pencil-and-paper game to the browser. Players take turns drawing lines between dots to complete boxes. Close a box and you claim it — plus you get another turn. Play against a smart AI opponent that learns to block your moves, or challenge a friend in local multiplayer mode.',
-    howToUse: [
-      'Choose your mode: play against AI or a friend (local).',
-      'Click between two adjacent dots to draw a line.',
-      'When you complete a box, it fills with your color and you earn a point.',
-      'Completing a box grants you an extra turn.',
-      'The player with the most boxes when the board is full wins!',
-    ],
-    enrichedFeatures: ['AI opponent with strategy-based gameplay', 'Local two-player mode', 'Multiple board sizes (3x3, 5x5, 7x7)', 'Score tracking and win history', 'Classic minimal visual style'],
-    accent: '#06b6d4',
-    accentFrom: '#06b6d4',
-    accentTo: '#0891b2',
-    emoji: '🔲',
-  },
-  'gravity-switch': {
-    detailedDescription: 'Gravity Switch is a 2D platformer built around one core mechanic: flipping gravity. Your character runs on ceilings and floors alike as you navigate procedurally generated levels filled with spikes, gaps, and moving platforms. Each flip reorients the world, and one wrong move means instant respawn.',
-    howToUse: [
-      'Use A/D or Left/Right arrow keys to move horizontally.',
-      'Press W, Up Arrow, or Space to jump.',
-      'Press Shift or the "Flip" button to reverse gravity.',
-      'Navigate through platforms, avoid spikes, and reach the exit.',
-      'The level layout changes every run thanks to procedural generation.',
-    ],
-    enrichedFeatures: ['Gravity-flipping core mechanic', 'Procedurally generated endless levels', 'Sharp pixel-art visuals', 'Increasing difficulty with speed and complexity', 'Death counter and best distance tracking'],
-    accent: '#10b981',
-    accentFrom: '#10b981',
-    accentTo: '#059669',
-    emoji: '🔄',
-  },
-  concentration: {
-    detailedDescription: 'Concentration is the timeless card-matching memory game, beautifully reimagined. Flip over tiles to reveal icons, then find their matching pair. With each game, the tiles shuffle randomly, testing your spatial memory and recall. A clean, focused design keeps you locked in on the task at hand.',
-    howToUse: [
-      'Click any tile to flip it and reveal the icon underneath.',
-      'Click a second tile to try to find its match.',
-      'If the icons match, both tiles stay revealed.',
-      'If they don\'t match, both tiles flip back after a brief moment.',
-      'Clear the board in the fewest moves to achieve mastery.',
-    ],
-    enrichedFeatures: ['Classic tile-matching gameplay', 'Move counter and live timer', 'Multiple icon sets and themes', 'Sound effects for matches and misses', 'Score tracking across sessions'],
-    accent: '#ec4899',
-    accentFrom: '#ec4899',
-    accentTo: '#db2777',
-    emoji: '🧠',
-  },
-  'word-flow': {
-    detailedDescription: 'Word Flow is a rapid-fire word association game that challenges your vocabulary and quick thinking. You\'re given a starting word — type a related word as fast as you can, then another, and another. The clock is ticking and your score multiplier drops with every second of hesitation. A built-in dictionary validates your entries in real-time.',
-    howToUse: [
-      'Read the displayed prompt word.',
-      'Type a word that is meaningfully related to the prompt.',
-      'Press Enter to submit your word — it must be a valid English word.',
-      'Each correct word earns points; faster answers get multiplier bonuses.',
-      'Keep the chain going until time runs out!',
-    ],
-    enrichedFeatures: ['Word association with real-time dictionary validation', 'Timed rounds with escalating pressure', 'Score multiplier that rewards speed', 'Extensive English dictionary integration', 'Session history and vocabulary tracking'],
-    accent: '#f97316',
-    accentFrom: '#f97316',
-    accentTo: '#ea580c',
-    emoji: '📝',
-  },
-  'infinite-maze': {
-    detailedDescription: 'Infinite Maze drops you into a procedurally generated labyrinth that extends infinitely in all directions. Every wall, corridor, and dead-end is created algorithmically as you explore. Use your wits — and a trail of breadcrumbs — to navigate deeper, find exits, and set new distance records.',
-    howToUse: [
-      'Use arrow keys or WASD to move through the maze.',
-      'Your path is traced behind you to help avoid backtracking.',
-      'Explore as far as you can — the maze has no end.',
-      'Collect items scattered throughout for bonus points.',
-      'Track your distance and time to beat your personal record.',
-    ],
-    enrichedFeatures: ['Infinite procedurally generated labyrinths', 'Real-time path tracing breadcrumb system', 'Distance and time tracking', 'Collectible items for scoring', 'Minimalist aesthetic with smooth rendering'],
-    accent: '#6366f1',
-    accentFrom: '#6366f1',
-    accentTo: '#4f46e5',
-    emoji: '🌀',
-  },
-  orbit: {
-    detailedDescription: 'Orbit is an interactive 3D solar system simulator that brings the cosmos to your browser. Every planet orbits the sun with accurate relative speeds, sizes, and distances. Zoom in to examine Jupiter\'s bands, pan across Saturn\'s rings, or pull back to watch the entire system in motion. An educational and awe-inspiring window into our celestial neighborhood.',
-    howToUse: [
-      'Drag to rotate your view around the solar system.',
-      'Scroll to zoom in and out — get as close as you like to any planet.',
-      'Click any planet to display its name, size, and orbital data.',
-      'Use the speed slider to accelerate or slow down time.',
-      'Toggle orbit paths and labels for an educational overlay.',
-    ],
-    enrichedFeatures: ['Accurate orbital mechanics and relative scales', 'Click-to-inspect planetary information panels', 'Adjustable simulation speed', 'Full camera controls (orbit, zoom, pan)', 'Educational labels and orbit path toggles'],
-    accent: '#0ea5e9',
-    accentFrom: '#0ea5e9',
-    accentTo: '#0284c7',
-    emoji: '🪐',
-  },
-  'stack-builder': {
-    detailedDescription: 'Stack Builder is a precision stacking game inspired by classic block-stacking arcades. A block slides back and forth — click to drop it onto the platform below. Align it perfectly to maximize your tower height. Miss the mark and blocks get cut down, making each subsequent placement harder. How high can you build before it all comes crashing down?',
-    howToUse: [
-      'Watch the sliding block move back and forth above the platform.',
-      'Click or tap to drop the block onto the stack.',
-      'Align it as precisely as possible — perfect placement earns a bonus.',
-      'Each imperfect placement shrinks the block width, increasing difficulty.',
-      'The game ends when a block misses the stack entirely.',
-    ],
-    enrichedFeatures: ['Precision-based stacking mechanics', 'Perfect placement bonus system', 'Progressive difficulty with shrinking blocks', 'Tower height tracking', 'Clean, colorful 3D-ish visuals'],
-    accent: '#14b8a6',
-    accentFrom: '#14b8a6',
-    accentTo: '#0d9488',
-    emoji: '🧱',
-  },
-  typerush: {
-    detailedDescription: 'TypeRush is a minimalist typing speed test designed for pure, distraction-free practice. Type the displayed words as fast and accurately as you can. Live WPM, accuracy, and character-level feedback keep you in the flow. With multiple word sets and a competitive race mode, it\'s the perfect tool for keyboard athletes.',
-    howToUse: [
-      'Select a word set (default, code, hard, or custom).',
-      'Start typing the highlighted word — it auto-advances on correct input.',
-      'Watch your live WPM and accuracy update in real-time.',
-      'Complete the passage to see your final stats and history.',
-      'Try Race Mode to compete against a simulated opponent.',
-    ],
-    enrichedFeatures: ['Live WPM tracking with real-time updates', 'Character-level accuracy feedback', 'Multiple word sets (English, code, hard mode)', 'Race mode with simulated opponent', 'Session history and improvement tracking'],
-    accent: '#a855f7',
-    accentFrom: '#a855f7',
-    accentTo: '#9333ea',
-    emoji: '⚡',
-  },
-
-  // ═══════════════════════════════════════════
-  // CREATIVE TOOLS
-  // ═══════════════════════════════════════════
+/**
+ * Per-project guide data. The keys match the slugs in `data.ts`.
+ * If a slug isn't in this map, `getProjectGuide` falls back to a
+ * derived default built from the project itself.
+ */
+const GUIDES: Record<
+  string,
+  {
+    detailedDescription: string;
+    howToUse: string[];
+    enrichedFeatures: string[];
+  }
+> = {
   galaxy: {
-    detailedDescription: 'Particle Universe is an interactive 3D particle system that lets you explore breathtaking cosmic landscapes. With five distinct presets — from swirling spiral galaxies to explosive supernovas — each scene is rendered in real-time using WebGL. Drag to rotate, scroll to zoom, and tweak parameters to create your own celestial masterpiece.',
+    detailedDescription:
+      "An interactive 3D galaxy rendered in real time with thousands of GPU-driven particles. Tweak the parameters to control density, spin, and the shape of the arms.",
     howToUse: [
-      'Select a preset from the gallery to load a particle configuration.',
-      'Drag your mouse or finger to rotate the 3D scene.',
-      'Scroll to zoom in and out of the particle field.',
-      'Adjust parameters like particle count, speed, size, and color using the controls panel.',
-      'Hit "Randomize" for a completely unique procedural generation.',
+      "Drag to rotate the camera around the galaxy.",
+      "Scroll to zoom in and out of the core.",
+      "Use the panel to adjust particle count, spin, and color.",
     ],
-    enrichedFeatures: ['5 immersive particle presets', 'Full mouse/touch interactivity (orbit, zoom)', 'Customizable particle parameters', 'Real-time WebGL rendering at 60fps', 'Randomize button for infinite variety'],
-    accent: '#8b5cf6',
-    accentFrom: '#8b5cf6',
-    accentTo: '#6d28d9',
-    emoji: '🌌',
+    enrichedFeatures: [
+      "Up to 10,000 particles on desktop",
+      "Mouse-driven camera parallax",
+      "Adjustable spiral arms and spin",
+      "Real-time GLSL shader for soft glow",
+    ],
   },
   waveform: {
-    detailedDescription: 'Waveform is a spectral audio visualizer that transforms sound into living, breathing visual art. Connect your microphone, upload an audio file, or let the built-in oscillator generate tones — Waveform renders the frequency spectrum as stunning real-time animations. With multiple visualization modes, every beat becomes a unique visual experience.',
+    detailedDescription:
+      "A real-time spectral audio visualizer. Drop a track in and watch the frequencies bloom into layered, generative animations.",
     howToUse: [
-      'Choose your audio source: microphone, file upload, or built-in oscillator.',
-      'Play audio and watch the waveform animate in real-time.',
-      'Switch between visualization modes (bars, circles, lines, particles).',
-      'Adjust sensitivity, colors, and smoothing with the controls.',
-      'Press "Screenshot" to capture and save your favorite visuals.',
+      "Click anywhere to enable the microphone.",
+      "Or drop an audio file onto the canvas.",
+      "Switch between visualization modes in the corner.",
     ],
-    enrichedFeatures: ['Three input modes (mic, file, oscillator)', 'Multiple visualization styles', 'Real-time frequency analysis', 'Customizable colors and sensitivity', 'Screenshot capture'],
-    accent: '#06b6d4',
-    accentFrom: '#06b6d4',
-    accentTo: '#0891b2',
-    emoji: '🎵',
+    enrichedFeatures: [
+      "FFT-based frequency analysis",
+      "Multiple visualization modes",
+      "Drop-file or microphone input",
+      "Responsive to any aspect ratio",
+    ],
   },
-  'pixel-studio': {
-    detailedDescription: 'Pixel Studio is a full-featured pixel art editor that runs entirely in your browser. Create intricate pixel art with layer support, an animation timeline, and a rich color palette. From simple sprites to animated GIFs, Pixel Studio gives you professional-grade tools without the need to install anything.',
+  "pixel-studio": {
+    detailedDescription:
+      "A focused pixel art editor that runs entirely in the browser. Layers, animation frames, and a tight color picker — nothing extra.",
     howToUse: [
-      'Select a brush size and color from the toolbar.',
-      'Click individual pixels on the canvas to draw.',
-      'Use the layer panel to add, reorder, and toggle layers.',
-      'Switch to the Animation tab to create frame-by-frame animations.',
-      'Export your creation as PNG, GIF, or sprite sheet.',
+      "Pick a color from the palette.",
+      "Click and drag on the canvas to draw pixels.",
+      "Use the timeline at the bottom to add animation frames.",
     ],
-    enrichedFeatures: ['Multi-layer canvas with blending modes', 'Frame-by-frame animation timeline', 'Export to PNG, GIF, and sprite sheets', 'Custom color palettes and eyedropper', 'Mirror drawing and shape tools'],
-    accent: '#f43f5e',
-    accentFrom: '#f43f5e',
-    accentTo: '#e11d48',
-    emoji: '🎨',
+    enrichedFeatures: [
+      "Multi-layer composition",
+      "Animation timeline with frames",
+      "Export to PNG and GIF",
+      "Custom palette support",
+    ],
   },
   codesnap: {
-    detailedDescription: 'CodeSnap makes your code look beautiful for sharing. Paste any snippet, pick a theme, and generate a styled image perfect for Twitter, LinkedIn, or documentation. With syntax highlighting via Prism.js, customizable backgrounds, and window chrome options, your code has never looked this good.',
+    detailedDescription:
+      "Drop in a snippet, pick a theme, and ship a beautiful image of your code to social media. No design skills required.",
     howToUse: [
-      'Paste or type your code into the editor.',
-      'Select the programming language for syntax highlighting.',
-      'Choose a theme from the preset gallery (dark, light, neon, etc.).',
-      'Adjust the window style, background, and padding.',
-      'Click "Export" to download your snippet as a high-resolution image.',
+      "Paste a code snippet into the editor.",
+      "Choose a syntax theme and background.",
+      "Click export to save as PNG.",
     ],
-    enrichedFeatures: ['Syntax highlighting for 30+ languages', 'Curated theme gallery', 'Custom backgrounds and window chrome', 'High-resolution image export', 'Shareable direct links'],
-    accent: '#10b981',
-    accentFrom: '#10b981',
-    accentTo: '#059669',
-    emoji: '💻',
+    enrichedFeatures: [
+      "Dozens of syntax themes",
+      "Custom backgrounds and padding",
+      "One-click PNG export",
+      "Shareable permalinks",
+    ],
   },
   gitviz: {
-    detailedDescription: 'GitViz brings Git repository history to life as an interactive, zoomable branch tree. Visualize commits, branches, merges, and forks in a way that `git log --graph` never could. Import any repository and explore its structure with smooth D3.js-powered animations.',
+    detailedDescription:
+      "An interactive visualization of Git history. Drop in a repo URL and watch your branches weave into a tree you can actually read.",
     howToUse: [
-      'Enter a Git repository URL or upload a `.git` folder to visualize.',
-      'The branch tree renders automatically with commits as nodes.',
-      'Drag to pan, scroll to zoom in/out on the graph.',
-      'Click any commit node to see its message, hash, author, and date.',
-      'Toggle branch filters to focus on specific parts of the history.',
+      "Paste a GitHub repository URL.",
+      "Click any commit to inspect the diff.",
+      "Drag to pan, scroll to zoom.",
     ],
-    enrichedFeatures: ['Interactive D3.js branch tree visualization', 'Commit-level detail panels', 'Zoom and pan controls', 'Repository import via URL or file upload', 'Branch and tag filtering'],
-    accent: '#f59e0b',
-    accentFrom: '#f59e0b',
-    accentTo: '#d97706',
-    emoji: '🔀',
+    enrichedFeatures: [
+      "Branch tree visualization",
+      "Commit-by-commit navigation",
+      "Inline diff viewer",
+      "Smooth zoom and pan",
+    ],
+  },
+  orbit: {
+    detailedDescription:
+      "A 3D solar system simulator with accurate orbital mechanics. Speed up time, focus on a planet, and learn the clockwork of the solar system.",
+    howToUse: [
+      "Drag to rotate, scroll to zoom.",
+      "Use the time slider to speed up or slow down time.",
+      "Click a planet to focus on it.",
+    ],
+    enrichedFeatures: [
+      "Accurate Keplerian orbits",
+      "Realistic planetary data",
+      "Time-scale controls",
+      "Click-to-focus camera",
+    ],
   },
   fractal: {
-    detailedDescription: 'Fractal Forge is a deep-zoom fractal explorer supporting both Mandelbrot and Julia sets. Dive into the infinite complexity of fractal geometry with GPU-accelerated WebGL rendering. Adjust iteration counts, color palettes, and zoom parameters to reveal hidden patterns in the mathematical landscape.',
+    detailedDescription:
+      "Dive into the Mandelbrot and Julia sets. Zoom in to discover new shapes, palette-map the depths, and save your favorites.",
     howToUse: [
-      'Choose between Mandelbrot and Julia set modes.',
-      'Click anywhere on the fractal to zoom into that point.',
-      'Use the color palette selector to recolor the fractal.',
-      'Adjust max iterations for deeper detail (higher = more detail, slower).',
-      'Press "Screenshot" to save the current view as an image.',
+      "Scroll to zoom, drag to pan.",
+      "Switch between Mandelbrot and Julia in the panel.",
+      "Adjust the iteration count for deeper detail.",
     ],
-    enrichedFeatures: ['Mandelbrot and Julia set exploration', 'Smooth infinite zoom with GPU acceleration', 'Custom color palette editor', 'Iteration depth control', 'High-resolution screenshot capture'],
-    accent: '#ec4899',
-    accentFrom: '#ec4899',
-    accentTo: '#db2777',
-    emoji: '🔬',
+    enrichedFeatures: [
+      "Mandelbrot and Julia sets",
+      "Deep zoom with arbitrary precision",
+      "Custom color palettes",
+      "Screenshot capture",
+    ],
+  },
+  typerush: {
+    detailedDescription:
+      "A minimal typing speed test. Real words, real-time WPM, and just enough pressure to make you want to do it again.",
+    howToUse: [
+      "Start typing as soon as the first word appears.",
+      "Press space to commit a word.",
+      "Race mode pits you against a friend locally.",
+    ],
+    enrichedFeatures: [
+      "Live WPM and accuracy",
+      "Multiple word sets",
+      "Race mode for two players",
+      "Minimal, focused UI",
+    ],
   },
   weather: {
-    detailedDescription: 'Weather Diorama is a 3D weather visualization that turns forecast data into an immersive atmospheric experience. Rain falls as particles, clouds drift across the sky, and the sun follows a day/night cycle — all reflecting real-time weather conditions from your location or any city worldwide.',
+    detailedDescription:
+      "A 3D weather visualization that mirrors real-time conditions for any city on Earth. Day-night cycle, atmosphere, the works.",
     howToUse: [
-      'Allow location access or search for a city to get weather data.',
-      'The 3D scene renders current conditions (sunny, rainy, cloudy, snowy, etc.).',
-      'Drag to rotate the diorama, scroll to adjust view distance.',
-      'View temperature, humidity, wind speed, and forecast in the overlay.',
-      'Toggle between current conditions and hourly/daily forecasts.',
+      "Search for a city in the input.",
+      "Watch the diorama reflect live conditions.",
+      "Toggle between metric and imperial units.",
     ],
-    enrichedFeatures: ['Real-time weather data via OpenWeather API', 'Dynamic 3D atmospheric rendering', 'Day/night cycle based on sun position', 'Multiple weather condition visualizations', 'Location search and geolocation support'],
-    accent: '#0ea5e9',
-    accentFrom: '#0ea5e9',
-    accentTo: '#0284c7',
-    emoji: '🌤️',
+    enrichedFeatures: [
+      "Real-time OpenWeather data",
+      "3D atmospheric effects",
+      "Day-night cycle",
+      "Global city search",
+    ],
   },
   gradient: {
-    detailedDescription: 'Gradient Lab is a professional CSS gradient generator for designers and developers. Create smooth multi-stop gradients with an intuitive visual interface, preview them in real-time, and copy the exact CSS code for use in your projects. From subtle backgrounds to vibrant brand gradients, the possibilities are endless.',
+    detailedDescription:
+      "A focused gradient generator with multi-stop control, real-time preview, and clean CSS output. Stop fighting gradient UIs that try to do too much.",
     howToUse: [
-      'Click on the gradient bar to add color stops.',
-      'Drag stops to adjust their position in the gradient.',
-      'Click a stop to change its color using the color picker.',
-      'Toggle between linear and radial gradient types.',
-      'Copy the generated CSS code with one click.',
+      "Click anywhere on the bar to add a stop.",
+      "Drag stops to reposition them.",
+      "Click a stop to pick its color.",
     ],
-    enrichedFeatures: ['Multi-stop gradient editing', 'Linear and radial gradient support', 'Real-time fullscreen preview', 'One-click CSS code export', 'Color picker with hex/rgb/hsl input'],
-    accent: '#a855f7',
-    accentFrom: '#a855f7',
-    accentTo: '#9333ea',
-    emoji: '🌈',
+    enrichedFeatures: [
+      "Multi-stop linear and radial",
+      "Real-time CSS preview",
+      "One-click copy",
+      "Saved presets",
+    ],
   },
   neural: {
-    detailedDescription: 'Neural Sketch is an interactive 3D visualization of an artificial neural network. Watch data flow through layers, observe weights adjust during training, and inspect individual neurons to understand how AI models learn. Built as an educational tool, it demystifies the "black box" of deep learning.',
+    detailedDescription:
+      "An interactive playground for understanding how neural networks learn. Watch weights shift, layers activate, and decisions form.",
     howToUse: [
-      'Select a preset network architecture or build your own.',
-      'Click "Train" to watch the network learn in real-time.',
-      'Each neuron lights up based on its activation value.',
-      'Click any neuron or connection to inspect its weight.',
-      'Adjust learning rate and layer sizes to see how they affect training.',
+      "Pick a dataset from the dropdown.",
+      "Adjust the learning rate and epochs.",
+      "Watch the loss curve and decision boundary evolve.",
     ],
-    enrichedFeatures: ['3D neural network architecture visualization', 'Real-time training animation', 'Individual neuron and weight inspection', 'Customizable network parameters', 'Multiple preset architectures'],
-    accent: '#14b8a6',
-    accentFrom: '#14b8a6',
-    accentTo: '#0d9488',
-    emoji: '🧠',
+    enrichedFeatures: [
+      "Live training animation",
+      "Decision boundary visualization",
+      "Weight inspection",
+      "Multiple toy datasets",
+    ],
   },
   graphite: {
-    detailedDescription: 'Graphite is a modern note-taking app that combines the simplicity of markdown with the power of a connected knowledge graph. Write notes in markdown, link them together with tags and references, and watch your ideas form an interconnected web. With real-time collaboration features, it\'s perfect for both personal knowledge management and team projects.',
+    detailedDescription:
+      "A modern note-taking app with markdown, a graph view of your notes, and real-time collaboration. Built for thinking in connections.",
     howToUse: [
-      'Create a new note using the "+" button or keyboard shortcut.',
-      'Write in markdown — formatting previews in real-time.',
-      'Add #tags to connect related notes automatically.',
-      'Switch to Graph View to see how your notes are interconnected.',
-      'Share a workspace link to collaborate with others in real-time.',
+      "Create a new note with the + button.",
+      "Use [[double brackets]] to link notes.",
+      "Switch to graph view to see your network.",
     ],
-    enrichedFeatures: ['Full markdown editor with live preview', 'Interactive graph view of connected notes', 'Real-time collaboration via Socket.io', 'Tag-based organization system', 'Search and full-text filter'],
-    accent: '#6366f1',
-    accentFrom: '#6366f1',
-    accentTo: '#4f46e5',
-    emoji: '✏️',
+    enrichedFeatures: [
+      "Markdown-first editor",
+      "Bidirectional links",
+      "Graph view of all notes",
+      "Real-time collaboration",
+    ],
   },
   breathscape: {
-    detailedDescription: 'Breathscape is a guided breathing companion that uses real-time particle feedback to make meditation tangible. Follow the 4-7-8 breathing pattern — inhale for 4 seconds, hold for 7, exhale for 8 — as a field of particles expands and contracts with your breath. A visual anchor for mindfulness in a busy world.',
+    detailedDescription:
+      "A guided breathing exercise with live particle feedback. The 4-7-8 pattern, animated in a way that actually calms you down.",
     howToUse: [
-      'Press "Start Session" to begin the breathing exercise.',
-      'Follow the on-screen visual and audio cues for inhale, hold, and exhale.',
-      'Watch the particle field expand and contract in sync with your breath.',
-      'Complete the session cycle (default: 4 rounds, 3-5 minutes).',
-      'View your session history and cumulative mindful minutes.',
+      "Click start to begin a session.",
+      "Follow the expanding and contracting particles.",
+      "Sessions last 2 minutes by default.",
     ],
-    enrichedFeatures: ['Guided 4-7-8 breathing pattern', 'Real-time particle feedback system', 'Session timer and progress tracking', 'Calming audio cues', 'Session history and streak tracking'],
-    accent: '#06b6d4',
-    accentFrom: '#06b6d4',
-    accentTo: '#0891b2',
-    emoji: '🌬️',
+    enrichedFeatures: [
+      "4-7-8 breathing pattern",
+      "Particle feedback synced to breath",
+      "Session timer",
+      "Calming ambient audio",
+    ],
   },
-  'flow-state': {
-    detailedDescription: 'Flow State is an elegant Pomodoro timer that gamifies productivity. Each focused work session contributes to growing a digital forest — the more you focus, the more your forest flourishes. With customizable work/break intervals and detailed productivity analytics, it turns time management into a rewarding visual journey.',
+  "flow-state": {
+    detailedDescription:
+      "A Pomodoro timer that grows a forest as you work. Each session plants a tree — miss a day, and the forest feels it.",
     howToUse: [
-      'Set your desired focus and break intervals (default: 25/5 min).',
-      'Press "Start Focus" to begin a work session.',
-      'When the timer ends, take a break — a new tree grows in your forest.',
-      'Repeat through the day to cultivate a thriving forest.',
-      'View your stats dashboard to see total focus time, trees planted, and streaks.',
+      "Pick a focus interval.",
+      "Work until the timer ends.",
+      "Come back tomorrow to keep your forest alive.",
     ],
-    enrichedFeatures: ['Customizable Pomodoro timer', 'Visual forest that grows with each session', 'Productivity statistics dashboard', 'Streak tracking and achievements', 'Distraction-free focus mode'],
-    accent: '#10b981',
-    accentFrom: '#10b981',
-    accentTo: '#059669',
-    emoji: '🌳',
+    enrichedFeatures: [
+      "Pomodoro timer",
+      "Visual forest growth",
+      "Streak tracking",
+      "Customizable intervals",
+    ],
   },
-  'mood-board': {
-    detailedDescription: 'Mood Board is a free-form creative canvas for collecting and arranging visual inspiration. Drag in images, add sticky notes, swatch colors, and arrange everything on an infinite canvas. Whether you\'re brainstorming a brand identity, planning a room redesign, or collecting aesthetic references, Mood Board gives your ideas room to breathe.',
+  "mood-board": {
+    detailedDescription:
+      "A drag-and-drop creative board for collecting ideas. Sticky notes, color swatches, images — arranged however your brain works.",
     howToUse: [
-      'Drag and drop images from your computer directly onto the canvas.',
-      'Double-click anywhere to add a sticky note with text.',
-      'Use the color picker to add color swatches.',
-      'Drag items to reposition them; resize with the corner handles.',
-      'Export your board as a high-resolution image or shareable link.',
+      "Drag the toolbar to add a note or image.",
+      "Drag any item to reposition it.",
+      "Right-click to delete or duplicate.",
     ],
-    enrichedFeatures: ['Infinite canvas with smooth pan/zoom', 'Image drag-and-drop support', 'Color sticky notes with text', 'Color swatch palette', 'Export as image or shareable board'],
-    accent: '#f43f5e',
-    accentFrom: '#f43f5e',
-    accentTo: '#e11d48',
-    emoji: '📋',
+    enrichedFeatures: [
+      "Free-form drag and drop",
+      "Sticky notes, images, swatches",
+      "Persistent local storage",
+      "Export to image",
+    ],
   },
-  'color-harmony': {
-    detailedDescription: 'Color Harmony teaches you color theory through an engaging matching game. You\'re shown a target color and must recreate it using RGB sliders — the closer you get, the more points you earn. With progressively challenging levels, you\'ll develop an intuitive feel for how colors are constructed.',
+  "typing-arena": {
+    detailedDescription:
+      "Words fall from the sky. Type them before they hit the ground. A typing game that turns practice into a reflex.",
     howToUse: [
-      'Study the target color displayed at the top of the screen.',
-      'Use the R, G, and B sliders to mix the matching color.',
-      'Press "Submit" to check your accuracy.',
-      'Earn points based on how close your match is (0-100% accuracy).',
-      'Advance through levels with increasingly subtle color differences.',
+      "Type the falling words before they land.",
+      "Press space to commit.",
+      "Don't let the stack get too tall.",
     ],
-    enrichedFeatures: ['RGB color matching challenge', 'Percentage-based accuracy scoring', 'Progressive difficulty system', 'Built-in color theory educational tips', 'Session score and improvement tracking'],
-    accent: '#8b5cf6',
-    accentFrom: '#8b5cf6',
-    accentTo: '#7c3aed',
-    emoji: '🎯',
+    enrichedFeatures: [
+      "Falling-word physics",
+      "Combo multiplier",
+      "Difficulty levels",
+      "High-score tracking",
+    ],
   },
-  'wave-painter': {
-    detailedDescription: 'Wave Painter is a meditative drawing tool where every stroke becomes an animated wave. Draw any shape on the canvas, and watch it come alive with undulating motion — like painting on water. The waves flow, intersect, and interact, creating mesmerizing patterns that evolve over time.',
+  "color-memory": {
+    detailedDescription:
+      "Flip cards to match colors. It looks easy. It is not. Trains both memory and color recognition at the same time.",
     howToUse: [
-      'Select a brush color and stroke width.',
-      'Draw on the canvas — each stroke becomes a wave.',
-      'Press "Animate" to set your strokes in motion.',
-      'Watch waves flow, intersect, and create evolving patterns.',
-      'Save your animated creation as a GIF or video.',
+      "Click any card to flip it.",
+      "Find its matching pair.",
+      "Clear the board in as few moves as possible.",
     ],
-    enrichedFeatures: ['Wave-based brush strokes with fluid animation', 'Multiple color palettes', 'Adjustable wave speed and amplitude', 'Animated GIF export', 'Soothing visual feedback'],
-    accent: '#0ea5e9',
-    accentFrom: '#0ea5e9',
-    accentTo: '#0284c7',
-    emoji: '🌊',
+    enrichedFeatures: [
+      "Card matching mechanic",
+      "Color recognition training",
+      "Timer mode",
+      "Move counter and high scores",
+    ],
+  },
+  "reaction-time": {
+    detailedDescription:
+      "A reflex test that measures how fast you can react to a color change. Spoiler: not as fast as you think.",
+    howToUse: [
+      "Wait for the screen to turn green.",
+      "Click as fast as you can.",
+      "Don't click too early — that's a foul.",
+    ],
+    enrichedFeatures: [
+      "Millisecond-precision timing",
+      "Best-of-5 averaging",
+      "History tracking",
+      "Global leaderboard",
+    ],
+  },
+  "dots-boxes": {
+    detailedDescription:
+      "The classic pencil-and-paper game, in the browser. Play against an AI that doesn't feel bad about stealing your boxes.",
+    howToUse: [
+      "Click a line to draw it.",
+      "Close a box to score a point.",
+      "Chain captures to keep the turn.",
+    ],
+    enrichedFeatures: [
+      "AI opponent with multiple difficulties",
+      "Local 2-player mode",
+      "Score tracking",
+      "Multiple board sizes",
+    ],
+  },
+  "color-harmony": {
+    detailedDescription:
+      "Match target colors using RGB sliders. A focused, tactile way to internalize how the three channels of color mix.",
+    howToUse: [
+      "Adjust the R, G, and B sliders.",
+      "Match the target color as closely as possible.",
+      "Score points for accuracy.",
+    ],
+    enrichedFeatures: [
+      "RGB slider matching",
+      "Progressive difficulty",
+      "Color theory tips",
+      "Score system",
+    ],
+  },
+  "wave-painter": {
+    detailedDescription:
+      "Draw strokes that become animated waves. Press play, and your drawing dances to its own rhythm.",
+    howToUse: [
+      "Draw strokes on the canvas.",
+      "Hit play to animate them as waves.",
+      "Adjust amplitude, frequency, and color.",
+    ],
+    enrichedFeatures: [
+      "Wave brush engine",
+      "Animation playback",
+      "Color palette",
+      "Export to GIF",
+    ],
+  },
+  "gravity-switch": {
+    detailedDescription:
+      "A 2D platformer where gravity is a verb. Flip it on the fly to navigate procedural levels that punish sloppy timing.",
+    howToUse: [
+      "Arrow keys or WASD to move.",
+      "Press jump (or space) to flip gravity.",
+      "Reach the green exit before the timer hits zero.",
+    ],
+    enrichedFeatures: [
+      "Procedural level generation",
+      "One-button gravity flip",
+      "Speedrun timer",
+      "Death counter",
+    ],
+  },
+  "stack-builder": {
+    detailedDescription:
+      "Stack blocks as high as you can. Miss the alignment and your tower shaves down. Get a perfect and the block stays full size.",
+    howToUse: [
+      "Click or press space to drop the block.",
+      "Time it for a perfect alignment.",
+      "Chain perfects for combo points.",
+    ],
+    enrichedFeatures: [
+      "Precision stacking",
+      "Perfect bonus",
+      "Combo system",
+      "Endless mode",
+    ],
   },
   soundscape: {
-    detailedDescription: 'Soundscape is an ambient sound mixer that lets you create your perfect audio environment. Mix and match layers of nature sounds — rain falling, ocean waves, forest birds, crackling fire — each with independent volume control. Save your favorite combinations and transport yourself to a peaceful place, wherever you are.',
+    detailedDescription:
+      "A multi-layer ambient mixer. Rain, ocean, forest, fire — drag the sliders to compose the exact vibe you need.",
     howToUse: [
-      'Browse the sound library organized by category (rain, water, nature, urban, etc.).',
-      'Click any sound to toggle it on — multiple sounds can play simultaneously.',
-      'Adjust each layer\'s volume with its individual slider.',
-      'Save your favorite mix as a preset for quick access.',
-      'Use the master timer to set the session duration for sleep or focus.',
+      "Adjust the slider for each layer.",
+      "Layer multiple sounds for depth.",
+      "Save your session as a preset.",
     ],
-    enrichedFeatures: ['10+ high-quality ambient sound layers', 'Individual volume control per layer', 'Save and load custom presets', 'Session timer with auto-stop', 'Minimal, calming interface design'],
-    accent: '#14b8a6',
-    accentFrom: '#14b8a6',
-    accentTo: '#0d9488',
-    emoji: '🎶',
+    enrichedFeatures: [
+      "Multi-layer mixing",
+      "Per-layer volume",
+      "Preset scenes",
+      "Session saving",
+    ],
   },
-  'daily-streak': {
-    detailedDescription: 'Daily Streak turns habit tracking into a garden you cultivate. Each day you complete your habits, a new plant or flower blooms in your digital garden. Miss a day and your garden wilts. With visual progress, streak tracking, and gentle reminders, it transforms self-improvement from a chore into something beautiful.',
+  "daily-streak": {
+    detailedDescription:
+      "A habit tracker where your garden grows as you do. Skip a day and the garden shows it. Build the streak, build the flowers.",
     howToUse: [
-      'Add habits you want to track (e.g., "Read 30 min", "Exercise").',
-      'Each day, check off completed habits.',
-      'Watch your garden grow — new plants appear with each completed day.',
-      'Maintain streaks to unlock rare plants and decorations.',
-      'Review your monthly calendar to see your consistency.',
+      "Add a habit you want to track.",
+      "Mark it done each day.",
+      "Watch the garden grow with your streak.",
     ],
-    enrichedFeatures: ['Visual garden that grows with completed habits', 'Streak tracking and calendar view', 'Customizable habit list', 'Unlockable plants and decorations', 'Gentle daily reminders'],
-    accent: '#f59e0b',
-    accentFrom: '#f59e0b',
-    accentTo: '#d97706',
-    emoji: '🌱',
+    enrichedFeatures: [
+      "Habit tracking",
+      "Visual garden",
+      "Streak calendar",
+      "Daily reminders",
+    ],
   },
   reflect: {
-    detailedDescription: 'Reflect is a digital journal that helps you understand yourself better through writing and analytics. Write daily entries in markdown, tag them with moods and topics, and watch as the app generates beautiful word clouds from your writing. Discover patterns in your thoughts, track your emotional trends, and build a lasting personal archive.',
+    detailedDescription:
+      "A daily journal with auto-generated word clouds from your writing. A small mirror that shows you what you've been thinking about.",
     howToUse: [
-      'Start a new journal entry by clicking the "+" button.',
-      'Write freely — entries support full markdown formatting.',
-      'Tag your mood and add topic tags to categorize your entry.',
-      'Visit the Insights tab to see auto-generated word clouds and mood trends.',
-      'Search through past entries by date, mood, or keyword.',
+      "Write your entry in markdown.",
+      "Tag your mood.",
+      "Watch the word cloud update as you write.",
     ],
-    enrichedFeatures: ['Markdown journal editor', 'Auto-generated word clouds from writing', 'Mood tracking with visual trends', 'Full-text search and filter', 'Calendar-based entry navigation'],
-    accent: '#ec4899',
-    accentFrom: '#ec4899',
-    accentTo: '#db2777',
-    emoji: '📔',
+    enrichedFeatures: [
+      "Markdown journal",
+      "Word cloud generation",
+      "Mood tracking",
+      "Search and filter",
+    ],
   },
-  'pattern-play': {
-    detailedDescription: 'Pattern Play is a digital spirograph that generates infinite geometric art. Adjust the radius, speed, and position of rotating circles to create intricate patterns — from delicate mandalas to bold geometric designs. Every configuration produces a unique, mathematically-generated masterpiece.',
+  "pattern-play": {
+    detailedDescription:
+      "A spirograph drawing tool that turns geometry into generative art. Tweak the parameters and watch the math unfold.",
     howToUse: [
-      'Adjust the primary radius slider to change the pattern scale.',
-      'Tweak speed and offset parameters for different geometric effects.',
-      'Select a color mode: mono, rainbow, or custom palette.',
-      'Watch the pattern draw itself in real-time.',
-      'Export your creation as SVG or PNG for printing or sharing.',
+      "Adjust the inner and outer radius.",
+      "Set the pen offset.",
+      "Color-cycle the strokes.",
     ],
-    enrichedFeatures: ['Real-time spirograph pattern generation', 'Multiple adjustable parameters (radius, speed, offset)', 'Color cycling and custom palettes', 'SVG and PNG export', 'Infinite unique pattern combinations'],
-    accent: '#a855f7',
-    accentFrom: '#a855f7',
-    accentTo: '#9333ea',
-    emoji: '🌀',
+    enrichedFeatures: [
+      "Spirograph engine",
+      "Custom parameters",
+      "Color cycling",
+      "Export to SVG",
+    ],
+  },
+  concentration: {
+    detailedDescription:
+      "The classic card-matching memory game, refined. Two decks of cards, your job is to remember where they are.",
+    howToUse: [
+      "Click any card to flip it.",
+      "Find its matching pair.",
+      "Clear the board in as few moves as possible.",
+    ],
+    enrichedFeatures: [
+      "Card matching",
+      "Move counter",
+      "Timer",
+      "Theme customization",
+    ],
+  },
+  "word-flow": {
+    detailedDescription:
+      "A word-association game. Type words related to the prompt, score points for creativity, race the clock.",
+    howToUse: [
+      "Read the prompt.",
+      "Type related words as fast as you can.",
+      "Press enter to submit each word.",
+    ],
+    enrichedFeatures: [
+      "Word association prompts",
+      "Timed rounds",
+      "Score multiplier",
+      "Built-in dictionary",
+    ],
   },
   pulse: {
-    detailedDescription: 'Pulse estimates your heart rate using just your device\'s camera — no wearable needed. Place your fingertip over the lens, tap in rhythm with your heartbeat, and watch your BPM visualized in real-time. With history tracking and health insights, it\'s a surprisingly accurate wellness tool always in your pocket.',
+    detailedDescription:
+      "Measure your heart rate using your camera. Real-time BPM visualization backed by photoplethysmography-style signal analysis.",
     howToUse: [
-      'Place your finger lightly over your device\'s rear camera lens.',
-      'Tap in rhythm with your heartbeat on the "Tap" button.',
-      'After ~15 seconds, your estimated BPM appears.',
-      'View the real-time visualization of your heart rate.',
-      'Check your history to track resting heart rate trends over time.',
+      "Cover the rear camera with your fingertip.",
+      "Stay still for 30 seconds.",
+      "Read your estimated BPM.",
     ],
-    enrichedFeatures: ['Camera-based heart rate estimation', 'Real-time BPM visualization', 'Session history and trend tracking', 'Health tips based on your readings', 'Minimal, calming interface'],
-    accent: '#f43f5e',
-    accentFrom: '#f43f5e',
-    accentTo: '#e11d48',
-    emoji: '❤️',
+    enrichedFeatures: [
+      "Camera-based heart rate estimation",
+      "BPM visualization",
+      "History tracking",
+      "Health tips",
+    ],
   },
-  'particles-playground': {
-    detailedDescription: 'Particles Playground is a physics sandbox where you control thousands of particles with forces and fields. Create gravity wells, vortex spirals, attractors, and repulsors — each particle responds in real-time to your force fields. A playful and mesmerizing exploration of emergent behavior and physics simulation.',
+  "infinite-maze": {
+    detailedDescription:
+      "An endless procedurally generated maze. Path-trace your route, race the timer, and try not to hit a dead end.",
     howToUse: [
-      'Click and drag on the canvas to spawn particles.',
-      'Select a force type from the toolbar: gravity, vortex, attract, repel.',
-      'Apply forces by clicking or dragging on the particle field.',
-      'Watch particles react with realistic physics behavior.',
-      'Try preset configurations for ready-made particle shows.',
+      "Arrow keys or WASD to move.",
+      "Reach the green exit.",
+      "Beat your best time.",
     ],
-    enrichedFeatures: ['Real-time particle physics simulation', 'Multiple force field types (gravity, vortex, attract, repel)', 'Custom brush sizes and particle colors', 'Preset configurations for instant effects', 'Performance-optimized for thousands of particles'],
-    accent: '#6366f1',
-    accentFrom: '#6366f1',
-    accentTo: '#4f46e5',
-    emoji: '✨',
+    enrichedFeatures: [
+      "Procedural generation",
+      "Endless levels",
+      "Path tracing",
+      "Speedrun timer",
+    ],
+  },
+  "particles-playground": {
+    detailedDescription:
+      "An interactive particle physics sandbox. Add gravity, vortexes, wind — see what your system can do.",
+    howToUse: [
+      "Click and drag to spawn particles.",
+      "Use the panel to add force fields.",
+      "Save your favorite configurations.",
+    ],
+    enrichedFeatures: [
+      "Physics simulation",
+      "Gravity, vortex, wind forces",
+      "Multiple brush types",
+      "Preset configurations",
+    ],
   },
 };
 
-export function getProjectGuide(slug: string): ProjectGuide {
-  return PROJECT_GUIDES[slug] || {
-    detailedDescription: 'An interactive project in the Lucii collection. Open the app to explore its features and functionality.',
-    howToUse: ['Open the app to get started.', 'Follow the on-screen instructions.', 'Explore the various features and settings.', 'Check the GitHub repository for more details.'],
-    enrichedFeatures: ['Interactive experience', 'Real-time feedback', 'Customizable settings', 'Responsive design'],
-    accent: '#8b5cf6',
-    accentFrom: '#8b5cf6',
-    accentTo: '#6d28d9',
-    emoji: '🚀',
-  };
+const DEFAULT_GUIDE = {
+  detailedDescription:
+    "A web-based interactive project built with modern web technologies. Open it, play with it, and dig into the source.",
+  howToUse: [
+    "Open the live demo.",
+    "Use the controls to interact.",
+    "Check the GitHub repo for source.",
+  ],
+  enrichedFeatures: [
+    "Real-time interactivity",
+    "Web-native performance",
+    "Open source",
+    "No build required to run",
+  ],
+};
+
+export function getProjectGuide(slug: string) {
+  return GUIDES[slug] ?? DEFAULT_GUIDE;
+}
+
+/**
+ * Convenience helper to derive a tagline for a project.
+ * Used by the dynamic project detail page header.
+ */
+export function projectTagline(project: Project): string {
+  const guide = getProjectGuide(project.slug);
+  return guide.detailedDescription;
 }
