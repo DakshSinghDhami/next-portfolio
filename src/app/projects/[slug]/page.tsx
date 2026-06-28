@@ -38,11 +38,18 @@ export async function generateMetadata({
       type: "article",
       url: `https://lucii.xyz/projects/${slug}`,
       siteName: "Daksh Singh Dhami",
+      locale: "en_US",
+      images: [{ url: "https://lucii.xyz/og.png", width: 1200, height: 630, alt: project.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${project.title} | Daksh Singh Dhami`,
       description: project.description,
+      images: ["https://lucii.xyz/og.png"],
+    },
+    other: {
+      "article:published_time": new Date().toISOString(),
+      "article:author": "Daksh Singh Dhami",
     },
     alternates: {
       canonical: `https://lucii.xyz/projects/${slug}`,
@@ -200,6 +207,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </ul>
         </section>
 
+        {/* BreadcrumbList JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://lucii.xyz/" },
+                { "@type": "ListItem", position: 2, name: "Projects", item: "https://lucii.xyz/#projects" },
+                { "@type": "ListItem", position: 3, name: project.title, item: `https://lucii.xyz/projects/${slug}` },
+              ],
+            }),
+          }}
+        />
         {/* JSON-LD */}
         <script
           type="application/ld+json"

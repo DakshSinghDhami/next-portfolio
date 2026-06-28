@@ -22,7 +22,7 @@ export default function OpenSource() {
           className="flex items-center gap-3 mb-4"
         >
           <span className="font-mono text-[12px] tracking-[0.2em] text-text-dim tabular-nums">
-            05
+            06
           </span>
           <span className="h-px w-12 bg-text-faint" />
           <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-muted">
@@ -57,6 +57,7 @@ export default function OpenSource() {
                 href={pkg.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View open source project: ${pkg.title}`}
                 className="block py-7 sm:py-9 transition-all duration-500 hover:pl-2"
               >
                 <div className="grid grid-cols-12 gap-4 sm:gap-6 items-baseline">

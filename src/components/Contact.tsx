@@ -27,7 +27,7 @@ export default function Contact() {
           className="flex items-center gap-3 mb-12"
         >
           <span className="font-mono text-[12px] tracking-[0.2em] text-text-dim tabular-nums">
-            06
+            07
           </span>
           <span className="h-px w-12 bg-text-faint" />
           <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-muted">

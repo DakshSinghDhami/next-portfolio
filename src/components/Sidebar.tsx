@@ -6,9 +6,10 @@ const NAV_ITEMS = [
   { id: "01", label: "Intro", href: "#intro" },
   { id: "02", label: "About", href: "#about" },
   { id: "03", label: "Experience", href: "#experience" },
-  { id: "04", label: "Projects", href: "#projects" },
-  { id: "05", label: "Open Source", href: "#opensource" },
-  { id: "06", label: "Contact", href: "#contact" },
+  { id: "04", label: "Yeet Labs", href: "#yeet-labs" },
+  { id: "05", label: "Projects", href: "#projects" },
+  { id: "06", label: "Open Source", href: "#opensource" },
+  { id: "07", label: "Contact", href: "#contact" },
 ];
 
 const SOCIALS = [

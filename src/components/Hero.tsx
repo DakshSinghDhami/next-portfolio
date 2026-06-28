@@ -60,6 +60,11 @@ export default function Hero() {
           </span>
         </motion.div>
 
+        {/* SEO hidden descriptor */}
+        <h2 className="sr-only">
+          Portfolio of Daksh Singh Dhami — Full-Stack Engineer & Creative Developer
+        </h2>
+
         {/* Massive name */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
