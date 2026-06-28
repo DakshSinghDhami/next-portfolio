@@ -9,14 +9,6 @@ const STATS = [
   { value: "30+", label: "projects built" },
 ];
 
-const TEAM = [
-  { name: "Vaibhav Anand", role: "Smart Contract Engineer" },
-  { name: "MYSTIC", role: "Full-Stack Developer" },
-  { name: "Shan Rasool", role: "Full-Stack Developer" },
-  { name: "Ankush", role: "Full-Stack Developer" },
-  { name: "Aditya Berry", role: "Decentralized AI Architect" },
-];
-
 const PROJECTS = [
   { name: "PokePerps", note: "DeFi perpetuals on Pokemon cards (Solana)" },
   { name: "PumpMyClaw", note: "AI trading agents (Solana/Monad)" },
@@ -115,109 +107,71 @@ export default function YeetLabs() {
           ))}
         </motion.ol>
 
-        {/* Two-column block: Team + Projects/Milestones */}
+        {/* Projects + Milestones */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mt-24">
-          {/* Team */}
+          {/* Projects */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="lg:col-span-5"
+            className="lg:col-span-6"
           >
             <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-muted mb-6">
-              / Team
+              / Projects
             </h3>
             <ol className="border-t border-border">
-              {TEAM.map((member) => (
+              {PROJECTS.map((project) => (
                 <li
-                  key={member.name}
+                  key={project.name}
                   className="group flex items-baseline justify-between gap-4 border-b border-border py-4 transition-colors hover:bg-elevated/30"
                 >
                   <span className="text-[15px] sm:text-[16px] text-text tracking-tight">
-                    {member.name}
+                    {project.name}
                   </span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted text-right shrink-0">
-                    {member.role}
+                  <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted text-right shrink-0 max-w-[60%]">
+                    {project.note}
                   </span>
                 </li>
               ))}
-              <li className="border-b border-border py-4">
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-faint">
-                  +15 more
-                </span>
-              </li>
             </ol>
           </motion.div>
 
-          {/* Right column: projects + milestones */}
-          <div className="lg:col-span-7 space-y-16">
-            {/* Projects */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, delay: 0.15, ease }}
-            >
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-muted mb-6">
-                / Projects
-              </h3>
-              <ol className="border-t border-border">
-                {PROJECTS.map((project) => (
-                  <li
-                    key={project.name}
-                    className="group flex items-baseline justify-between gap-4 border-b border-border py-4 transition-colors hover:bg-elevated/30"
-                  >
-                    <span className="text-[15px] sm:text-[16px] text-text tracking-tight">
-                      {project.name}
-                    </span>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted text-right shrink-0 max-w-[60%]">
-                      {project.note}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </motion.div>
-
-            {/* Milestones timeline */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, delay: 0.2, ease }}
-            >
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-muted mb-6">
-                / Milestones
-              </h3>
-              <ol className="relative">
-                {/* Vertical line */}
-                <span
-                  aria-hidden="true"
-                  className="absolute left-[3.5rem] sm:left-[4.5rem] top-2 bottom-2 w-px bg-border"
-                />
-                {MILESTONES.map((m) => (
-                  <li
-                    key={`${m.year}-${m.event}`}
-                    className="group relative grid grid-cols-[3.5rem_1fr] sm:grid-cols-[4.5rem_1fr] items-baseline gap-4 py-4"
-                  >
-                    {/* Year */}
-                    <span className="font-mono text-[12px] tracking-wider text-text-dim tabular-nums">
-                      {m.year}
-                    </span>
-                    {/* Dot on the timeline */}
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-[3.375rem] sm:left-[4.375rem] top-[1.4rem] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-text-muted group-hover:bg-accent-warm transition-colors duration-500"
-                    />
-                    {/* Event */}
-                    <span className="text-[15px] sm:text-[16px] text-text leading-relaxed pl-6 sm:pl-8 text-balance">
-                      {m.event}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </motion.div>
-          </div>
+          {/* Milestones timeline */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, delay: 0.15, ease }}
+            className="lg:col-span-6"
+          >
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-muted mb-6">
+              / Milestones
+            </h3>
+            <ol className="relative">
+              <span
+                aria-hidden="true"
+                className="absolute left-[3.5rem] sm:left-[4.5rem] top-2 bottom-2 w-px bg-border"
+              />
+              {MILESTONES.map((m) => (
+                <li
+                  key={`${m.year}-${m.event}`}
+                  className="group relative grid grid-cols-[3.5rem_1fr] sm:grid-cols-[4.5rem_1fr] items-baseline gap-4 py-4"
+                >
+                  <span className="font-mono text-[12px] tracking-wider text-text-dim tabular-nums">
+                    {m.year}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[3.375rem] sm:left-[4.375rem] top-[1.4rem] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-text-muted group-hover:bg-accent-warm transition-colors duration-500"
+                  />
+                  <span className="text-[15px] sm:text-[16px] text-text leading-relaxed pl-6 sm:pl-8 text-balance">
+                    {m.event}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </motion.div>
         </div>
 
         {/* Contact link */}
@@ -225,7 +179,7 @@ export default function YeetLabs() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.25, ease }}
+          transition={{ duration: 0.8, delay: 0.2, ease }}
           className="mt-20 pt-8 border-t border-border"
         >
           <a
